@@ -1,0 +1,54 @@
+Basic concept of prograing :
+*****************************
+
+1.How to create Folder dynamically via date using cmd makdir %date%
+
+concept 1: a folder can not contain , Illegal charecter like \,/,?,*,"",|,:,<>
+
+if while running the command , mkdir %date% if you get an error, incorrect syntax error 
+
+make sure you date format does not contain illegal character \,/,?,"",|,:,<>
+
+Basic Story:
+php is our technology , and php is server side language. 
+why not php will execute on the browser
+
+
+1. Acording to client server model 
+2. Anything which is loaded by client(browser) wil be called as resourse
+
+How end user going to make a request:-
+End user will make a request using url
+
+
+End user will use browser a interface (plateform) to make a request by using url
+
+
+How many Types of Request:-
+there are two types of request 
+1. Synchronous Request:PHP,Python,.NEt,Jsp,.....etc.
+2.Asynchronous Request:Ajax,Node.js\request
+
+Synchronous Request:-
+	a request in which page one event depends on other request to happen such type of request
+	is called synchronous request. these request are blocking in nature.
+	For Example:
+	1.Js---->window.alert();
+	2. php--->form submit
+
+Asynchronous Request: A request in which one event does not depends upon other event 
+such type of request is called as synchronous request, These request are non-blocking in 
+nature.
+
+1. Node jas---->window.alert();
+	r1------->wait
+	r2------->process--->success
+	r3------->wait
+	r4------->process--->success
+	
+2. PHP
+r1----------> wait ---->success
+r2---------->wait--->process--->success
+r3-------->wait----->process--->success
+r4--------->wait---->process--->success
+

@@ -1,0 +1,46 @@
+1.there are two possible cases 
+	case1.you will get a output
+	
+you have writen the code of php-->
+	execute php interpreter php -->laragon
+	
+	1.set the enviroment variable set
+	2.use the laragon (terminal)
+	
+how many ways we can run php program:-
+1.using laragon terminal
+	launch laragon terminal
+	goto file
+	type
+	php filename.php
+	
+	output :terminal--->php cli mode
+	
+2.using cmd,gitbas etc etc..
+	goto file 
+	type filename.php 
+	
+	output :terminal--->php cli mode
+
+3.using php inbuilt server 
+	cli server
+	goto file
+	type-php -S localhost:<port-no>
+	
+	goto browser
+	make a request
+	localhost:<port-no>
+	type url:filename.php
+	url:
+	localhost:<port-no>/file-name.php
+	
+	output ---> web --->php cli web mode
+	
+	Note:- in case you need not to enable laragon server
+	
+	in php version 5.6.2 php supports inbuilt server.
+	
+	
+how to close the running server
+	ctrl+c
+	current executing command  close

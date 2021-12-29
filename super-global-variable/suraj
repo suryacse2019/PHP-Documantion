@@ -1,0 +1,69 @@
+<?php
+echo "this is suraj teminal";
+echo PHP_EOL;
+echo "the suraj framework";
+print_r($argv);
+
+$commands=[
+'--help'=>'this is help command',
+'--v'=>'1.x',
+'--a'=>'for addition',
+'--s'=>'for subtraction',
+'--m'=>'for multiplication',
+'--d'=>'for devision',
+'--r'=>'for reminder',
+];
+echo PHP_EOL;
+forEach($commands as $key => $value){
+	printf("%s\t\t:\t\t%s\n",$key,$value);
+}
+$output='';
+if(isset($argv[1])){
+$command=$argv[1];
+echo "\e[H\e[J";
+switch($command){
+case '--v':
+	$output='1.x';
+	break;
+	
+	case '--a':
+	$x=readline("enter the first number :");
+	$y=readline("enter the second number :");
+	$output=$x+$y;
+	break;
+	
+	case '--s':
+	$x=readline("enter the first number :");
+	$y=readline("enter the second number :");
+	$output=$x-$y;
+	break;
+	
+	case '--m':
+	$x=readline("enter the first number :");
+	$y=readline("enter the second number :");
+	$output=$x*$y;
+	break;
+	
+	case '--d':
+	$x=readline("enter the first number :");
+	$y=readline("enter the second number :");
+	$output=$x/$y;
+	break;
+	
+	case '--r':
+	$x=readline("enter the first number :");
+	$y=readline("enter the second number :");
+	$output=$x%$y;
+	break;
+	
+	default:
+	$output='Invalid command supplied';
+	break;
+}
+}
+echo $output;
+
+
+
+
+?>

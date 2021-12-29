@@ -1,0 +1,36 @@
+Xampp Plugin By Suraj= https://github.com/awnishmmg/Zwavexampp-list-plugin/blob/master/Xampp-Directory-Listing.zip?raw=true
+
+What is index.php file?
+Ans: index.php file is the by default file of apche which we will be directly loaded in the url 
+
+which server you are using?
+apache server
+
+Apache server is INSTALLED in which server?
+largon server
+
+what is my current file name?
+p1.php
+
+where this is stored file name?
+p1.php
+
+where this is stored?
+inside c:laragon/www inside laragon server 
+from where you want to access p1.php                       
+
+url(uniform resourse locator)
+uri(uniform resourse Identifier)
+
+from where you can access this index.php 
+from browser (client)
+make the request
+
+
+Url has following parts:-
+*************************
+url is kind of web address to some resourse located at any server.
+Url can be two types
+1.Protocal based
+2.Non protocol based: uses ip address 
+

@@ -1,0 +1,1012 @@
+In order to take input on console window or cli mode we need a scanner.php file where we define 
+input() function.
+
+postmorem of input() function inside scanner.php:-
+**************************************************
+In order to understand this , how , input function works following concepts are required.
+
+1.use of echo statement
+2.driver protocol [protocol]://
+3.concept of user define function 
+4.returning from a function
+5.using default argument in a finction 
+6.file-pointer and and file handling
+7.input output buffer or i/o stream
+8.using trim() function
+
+Q1.Do php inbuilt , console input function?
+Ans:-yes, readline() is predefined function used to take input.
+
+WAP in php to perform addition of two number using readline method in cli method?
+*********************************************************************************
+C:\laragon\www\app-2021\Cli>php -a
+Interactive shell
+
+php > $name=readline();
+suraj yadav
+php > echo $name;
+suraj yadav
+php > $name=readline('Enter the name:');
+Enter the name:suraj yadav
+php > echo $name;
+suraj yadav
+php >   
+
+
+1. start notepad++ p3.php
+<?php
+$no1=readline("Enter no 1:");
+$no2=readline("Enter no 2:");
+$sum=$no1+$no2;
+printf("the sum is:%d",$sum);
+?>
+
+
+Explanatio of above statement:-
+*******************************
+we use echo statement for printing the string value, or any variable value or any constant literal.
+
+1.use of echo statement:-
+*************************
+
+php > echo 'hello world';
+hello world
+php > echo "hello world";
+hello world
+php > echo 10;
+10
+php > $x=10;
+php > echo $x;
+10
+php > echo true;
+1
+php > echo false;
+php > echo [10,20,30];
+
+Notice: Array to string conversion in php shell code on line 1
+Array
+php > printf("%d",false);
+0
+
+
+
+php > echo json_encode(PHP_EOL);
+"\r\n"
+php >
+
+
+Q1:php > $x=(false=='');
+a)1--->(correct)
+b)0
+c)
+d)none of these
+
+Explanation:-
+==compare content
+
+Q2:php > $x=(false==='');
+a)1
+b)0
+c)
+d)none of these--->(correct)
+
+Explanation:
+	php > $x=(false==='');
+	php > echo $x;
+	php > echo (int)$x;
+	0
+	php>echo json_encode($x);
+	false
+	
+	php>echo getType($x);
+	boolean
+	
+	Note:- echo will evaluate, the , expression as a string.
+	
+	lower conversion:int
+	upper conversion:string
+	
+php > echo [10,20,30];
+
+Notice: Array to string conversion in php shell code on line 1
+Array
+1
+php > echo join([10,20,30,40]);
+10203040
+php >  
+
+php > echo "[10,20,30,40]";
+[10,20,30,40]
+php > echo implode('',[10,20,30]);
+102030
+php >   
+
+php > echo null;
+php > echo json_encode(null);
+null
+
+Q3:null==false;
+php > echo (null==false);
+1
+php > echo (null===false);
+php >
+
+
+Note:: nul==0==false==''==true==1
+
+===we can find the difference
+
+
+
+
+
+
+2.driver protocol [protocol]:
+*****************************
+	php supports list of driver protocols
+	these are also called as wrapper, or schem in the php
+	1.file://- Accessing local filesystem
+	2.http://- Accessing HTTP(s) URLS
+	3.ftp://- Accessing FTP(s) URLS
+	4.php://- Accessing various I/O streams
+	5.zlib://- Compressing streams
+	6.data://- DATA (RFC 2397)
+	7.glob://- Find pathnames matching pattern
+	8.phar://- PHP Archive
+	9.ssh2://- secure shell 2
+	10.rar://- RAR
+	11.ogg://- Audio streams
+	12.expert://- process intraction Streams
+	
+	php://  it can handle any type of input or output from any interface.
+	it can terminal , it can be ui based or any third party (API) Application Programming Interface.
+	
+	in scanner.php we wrote a code
+	$input =fgets(STDIN,1024);
+	STDIN : stdinput
+	STDERR : stderror
+	STDOUT : stdoutput
+	
+	the meaning of STDIN = php://input
+	the meaning of stdout = php://output (5.6.2) or php://memory < (5.6.-)
+	
+	php://input
+	php://output is a write-only stream that allows you to read raw data from the 
+	request body. php://input is not is not avaiable with enctype="multipart/form-data".
+	
+	php://output
+	php://output is a write-only stream that allows you to write to the output buffer machanism 
+	in the same sway as print and echo.
+
+	Note that, these are used for raw Input only (Json Input) from client request.
+	
+	
+	What is use of fgets:
+	********************
+	fgets() allows you read the data from any input resource.
+	it internally uses, file pointer.
+	by default it can read 1024 charecter at a time from the buffer.
+	
+	
+	1. fgets : terminal read
+		fgets(STDIN,1024)
+	2.fgets : file read
+		
+		fgets can read any no of character from any file, or resource before EOL,
+		
+		Case1:-
+			fgets accepts two argument 
+			
+			1.resource handler this can be a wrapper, scheme, file pointer,
+			2.buffer_size: number of memory blocks reserverd for , input character stream.
+			it works like a link list
+			where 0 : address
+				  1 : base Data : Header Data : Header Node
+				  2 : other Nodes
+				  
+			if buffer_size not supplied: default 1024
+			if buffer_size == 0 :false
+			if buffer_size > 1 : character Bit reserverd in memory blocks
+			headed(pointed By)
+			by basen node.
+			
+			
+
+3.concept of user define function :-
+***********************************
+	wap in php to show user define function 
+	1.function <any-function>($args1,$args2,$srgs3,$srgs4,$srgs5.....)
+	{
+		//code statement
+		}
+		
+	
+	function wish(){
+	echo 'hy! good morning...';
+	}
+		
+wap in php to add number using user defined function 
+
+	$no1=readline('Enter the number no1:');
+	$no2=readline('Enter the number no2:;);
+	echo add($no1,$no2);
+	function add($no1,$no2){
+	return $a+$b;
+	}
+	
+4.returning from a function:
+****************************
+	using return keyword inside function the function should return a value we have 
+	already seen in add() function
+	
+5.using default argument in a finction:
+*************************************
+	if we want to make argument optional (can pass or cannot pass) in that
+	case define a default valu to the argument in function declaration and
+	defination 
+	
+	function add($a,$b=0){
+	
+	}
+	$a : mendatory Argument.: the aegument which are comulsory
+	$b : optional argument.: the optional are argument have a default a value , which makes
+	them optional , such that if we pass to value $argument takes the assignment value , if not , it is going to 
+	use the value default value. this makes these argument (parameter,inpout) as optional 
+	argument.
+	
+	
+	
+	
+	
+	
+6.file-pointer and and file handling:
+*************************************
+	file pointer is special variable that store refrence to memory allocation of a any file,
+	$fp=fopen ('anyfile.txt','mode')
+	
+	here $fp acts a file pointer which is pointing to the refernce address of anyfile.txt.
+	
+	$fp is also resource handler.
+	
+	file handling : perform I/O operation on the file, to store the data permanently in the 
+	filesystem of os is called filehandling.
+	
+	
+	
+	
+	
+7.input output buffer or i/o stream:
+************************************
+	[ Diagram ] Buffer
+	
+whenever we are going take input from started input DEvices
+it is electrically converted into digital signal and stored in buffer by Bios.
+which can be use by , kernal (core of os) to internally use this input and output values.
+
+I/B: input buffer : stores all binary form of inputs taken from input devices which are digitally
+converted from a anolog signal in form of curren.
+
+O/B: Output Buffer: stpores all binary form of outputs and calculated by alu and sent to
+ primary memory which is then stored at output buffer which can be transfered to, any output
+ device.
+
+
+
+8.using trim() function:
+************************
+	it truncates the extra spaces and new line charecters from a input string.
+	
+Programm:-
+	<?php
+$name='  suraj yadav   ';
+echo $name;
+printf("The length of name is :%d",strlen($name));
+
+
+$clean_name=trim($name);
+echo PHP_EOL;
+echo $clean_name;
+printf("the length of the name is:%d",strlen($clean_name));
+?>
+
+
+
+
+variable($) and refernce to variable($$)  or variable to variable reference
+ in php :-
+*****************************************
+1. variable is a kind of identifier used the first storing the constant literal.
+	a variable is also a reference to memory.
+	
+Q1.what is identifier?
+ans:- the name given to any thing is called as identifier.
+
+Example:- it can be function name, clas name, variable name,  
+user defined naming convention is called Identifier.
+
+Q1:
+class Test{
+
+private $a;
+private $b;
+
+public function dance($msg){
+printf("The dance function");
+return $msg;
+}
+}
+
+Q:1-How many Identifier are there:-
+Ans:-5 Identifier
+
+Syntax:-
+	$<variable-name>=<some-value>;
+	$x//valid
+	but echo $x;
+
+
+Rules for making Identifier:-
+****************************
+1.total valid
+2.total_ valid
+3.total23 valid
+4.123total invalid
+5._123total valid
+6._total valid
+7._123 valid
+8.total_123 valid
+9.total 123 invalid
+10. is_passed valid
+11.is passed invalid
+12._total is valid
+13.total is valid
+14.total_ is valid
+
+alphanumeric_(underscore is valid) but numericalpha_ is invalid
+
+
+allowed character : a-z A-Z_
+(0-9){1,n} position where not allowed at 0th index
+
+special character cannot be used ther than $name $$ only at 0th index for 
+variable naming convention.
+
+In php variable name or case sensitive
+$name is defferent and $NAME is different and $Name is differeent and $NaMe is different
+
+
+a variable can hold any type of value depending on the data-type.
+for example:-
+1.a variable can hold a numerical values like int float.
+2.a variable can hold a boolean value like true false.
+3.a variable can hold a collection of values like array.
+4.a variable can hold a value like empaty or nullable value.
+5.a variable can hold a resourse like mysqli resourse object.
+6.a variable can hold a string value B/W '' and "" heredoc , newdoc strings.
+7.a variable can hold a object or instans.
+8.a variable can hold a context of super global (also called super global variable).
+
+Note::What is differeent b/w json_encode and join_decode?
+		json_encode: php native data-type to jason native representation.
+					the data representation is complatly , raw.
+		join_decode: jason representation convert to php native deta type raw data php
+					data-type type.
+
+<?php
+//wap in php to show boolean false stored in variable
+$x=false;
+echo $x;//nothing
+echo PHP_EOL;
+echo getType($x);//boolean
+echo PHP_EOL;
+var_dump($x);//bool(false)
+echo PHP_EOL;
+echo json_encode($x);//raw format
+
+echo 'on comparing the values :-';
+echo(false==False);
+echo PHP_EOL;
+echo (false==FALSE);
+echo PHP_EOL;
+var_dump (0==FALSE);
+echo PHP_EOL;
+var_dump(0==false);//type is optional match
+echo PHP_EOL;
+var_dump(0==(int)false);//implicit Type conversion // php dynamic
+echo PHP_EOL;
+var_dump(0===false);//content match and type match = false
+?>
+
+Output:-
+*******
+	boolean
+bool(false)
+
+falseon comparing the values :-1
+1
+bool(true)
+
+bool(true)
+
+bool(true)
+
+bool(false)
+
+
+catalog me browser ka metadata hota hai?
+
+
+Note::we can use print_r() or var_dump() to print the output of the array.
+
+print_r(): prints the array or any resource in, readable form it only show the 
+data inside it.
+
+var_dump(): it will dump the entire data about the variable , hence var_dump shows the
+data called (metadata).
+
+var_export: Alias of var_dump() , some as var_dump but it show the representation of the 
+data in more readable. not meta data.
+
+
+empty:
+	a empty is a value (with no value) having type as  string and length as zero , and 
+	ordinality (Ascii) as 0.
+	
+
+ What is the mejor difference between null and undefined variable?
+ ****************************************************************
+ 1.$x='a';    isset($x)---->return true
+ 2.echo $x; print---->a
+ 
+ if you try these things a undefined variable .
+ $y;
+ echo $y; //undefined variable $y.
+ since you are printing this with echo you will see nothing
+ var _dump($y); //same error , undefined variable $y but , data type NULL.
+ isset ($y); false--->valid --->$y does not exist at all --> $y is given memory.
+ 
+ $z=null;   //$z--->memory
+ echo $z; //no error--->no output will be generated.
+ var_dump($z);//null without any error
+ isset($z); //false here $z is allocated into memory without any value.
+ 
+ 
+ unset ($y); //delete from memory 
+ echo $y;
+ unset($z);//delete from the memory
+ echo $z; //undefined variable $z;
+ 
+ var_dump($y);//undefined variable --->null
+ var_dump($z);//no error --->null
+ unset($y);//
+ unset($z);
+ var_dump($z);//undefined variable --->null
+ var_dump($y);//undefined variable--->null
+ 
+ 
+ 
+ resource :
+	<?php 
+	$conn = mysqli_connect('localhost:3308','root','','');
+	var_dump($conn);#Object--->Resource
+	
+	?>
+ 
+ 
+ 
+Super GLobal Variable:-These are special with global context , and scope and these
+ predefined variable by php and it has been reserved , for some special purpose
+
+Super Global variable are of two types:-
+1.  Super Global variable.
+2.Non-  Super Global variable.
+
+Super Global Variable in general:
+1.$GLOBALS : non- Mangled
+2.$_SERVER :  Mangled
+3.$_GET :  Mangled
+4.$_POST :  Mangled
+5.$_FILES :  Mangled
+6.$_COOKIE :  Mangled
+7.$_SESSION :  Mangled
+8.$_REQUEST :  Mangled
+9.$_ENV :  Mangled
+
+Other Super Global Variable:-
+$http_response_header : non- 
+$argc : non- 
+$argv : non- 
+$php_errormsg : Deprecated
+
+Note::   : which start with $ and _ as prefixed
+this naming convension is called name mangaling same thing is valid in python : _name_,
+_main_,__init(self)_ in javascript:_proto_
+ 
+ 
+ 
+ 1.   Super GLobal Variable:-
+		are the variable whose naming convension is such that they are declared using $ 
+		but have _ at prefix.
+		
+For Eg: normal variable $name, $class, $_server, $_REQUEST , $_GET , $_POST
+ 2.Non-  Super GLobal Variable:- 
+		are the variable whose naming convension are like normal variable and use no special
+		prefixing like _ or _ they can be treated as normal variable in case naming 
+		convention only.
+		
+		For Eg:-
+			$name, $class, $marks, $GLobal, $argc, $http_response_header, $php_errormsg.
+			
+			
+What is the difference B/W normal variable and super global variable:-
+1.SGV are predefined but normal variable are user defined.
+2.SGV have global scope and normal variable have local scope.
+3.normal variable do not have concept called name mangling but super global variable 
+  have.
+
+1.$GLOBALS : Both SAPI (CGI+CLI)
+2.$_SERVER : Both SAPI (CGI+CLI) But Environment Dependent.
+3.$_GET :  SAPI : CGI
+4.$_POST :  SAPI : CGI
+5.$_FILES :  SAPI : CGI
+6.$_COOKIE :  SAPI : CGI
+7.$_SESSION :  SAPI : CGI
+8.$_REQUEST :  SAPI : CGI
+9.$_ENV :  SAPI : CGI | CLI
+
+Other Super Global Variable:-
+$http_response_header : SAPI:CGI
+$argc : CLI
+$argv : CLI
+$php_errormsg :  Both | CLI | CGI 
+
+
+SAPI: service application programing interface | system application programing interface
+CGI: common Gatway interface
+argc: argument count
+argv: argument variables
+
+What is SAPI?
+*************
+1.SAPI stands for server/system Application programing interface.it is,a type of service,
+which recognises the enviroment in which execution of the program takes place.
+This service is , handled by web server.
+
+ 
+ What is php to show different sapi name at different enviroment.
+ Ans:- Consider sapi.php
+ 
+ <?php
+ echo php_sapi_name();
+ ?>
+ 
+ 1.php sapi.php //cli
+ 2.php -S localhost:8000 //cli server
+ 3.apache(laragon)--->http://localhost:786/ //apache2handler
+
+ 
+ 1). what is sapi of $name='surajyadav';?
+	a)cli
+	b)cgi
+	c)both (correct)
+	d)this is not super global varaiable
+	
+2)what is correct value for $argc when you are running it at url:
+http://localhost:786/p1.php?
+
+1)1
+2)2
+3)0 (correct)
+4)3
+
+
+Command line Argument in PHP
+***************************
+In any programing language , language there are two type of inputs enviroment.
+	1.Runtime Input : input are argument supplied during program execution is called as 
+		runtime argument.
+		For Example:
+		scanf(),getch(),gets(),getc(),getchar()
+	
+		you can take input from these function , or you can supply the input , in these only when
+		program is running in primary memory.
+	2.compile Time, Input or arguments.
+		the arguments supplied at compile time of program is called command line arguments
+		
+		In php we have two super global variable for this 
+		1.$argc : arguent count
+		2.$argv: argument vector or arguent variable
+		3.They will under only sapi mode = cli.
+		
+php -S localhost:8000
+     |   | CLI-arguments
+	 CLI-arguments
+	 
+The Properties of Command Line Argument:-
+1. The Command Line arguments are the arguments which supplied at Compile
+   compile time.
+   
+2. $argv : argument vector is responsible to accepting the arguments, 
+	at compile-time.
+3. $argc : holds the no of counts or no of varible arguments supplied,
+4. the type of $argc : is int type
+5. the default size of $argc is : 1
+6. the size of $argc = (n+1) where n is the no of arguments.
+7. $argc and $argv both work only under sapi == cli mode
+8. $argv and $argc are super global varaibles according to PHP standards.
+   in, the super global also they belongs to, category of non-mangled super global varaibles.
+9. $argv is a Hemogenous Array.
+
+   *********************************
+	Note :: In general in Any Programming langauge, Array are collection 
+			of constants Literals,
+			It has following classification
+			
+			1. On the Basis of data.
+			
+				1. Same and same : Homogenous.
+				2. different Type : Hetrogenous.
+				3. mixed Type : Hetrogenous
+				
+			2. On the Basis of Dimension.
+					1. 1-D Array (single Dimension, Linear Array)
+						
+					2. 2-D Array. (Multi-dimensional Array)
+					3. 3-D Array. (Multi-dimensional Array)
+					4. n-D Array. (Multi-dimensional Array)
+					
+			3. On the Basis of Structure/Nature.
+					1. Index Array
+					2. Mapped Array (Key and Value Pair)
+						Note:: There can be n of names, for the Mapped Array.
+						for Eg:
+							python ---> Dictionary
+							Java ---> HashMap
+							C# ---> HashArray
+							Javascript ---> ArrayOfObject
+							PHP ---> Associative Array
+							C++ ---> VectorArray
+							...
+							...
+	******************************************						
+10. $argv has homogenous type as string Array, i.e. is why it is also, 
+	string vector,
+11. the argv supports ssv only (space seperated values).
+12. The datatype of each, element either, float, or int, or boolean	
+	or array everything is converted to string only
+13. if you want supply spaced characters then we need to use "" otherwise
+	it will make all space seperated values as different Argument.
+14. The index 0 is always file_name
+15. Even though php is dynamic langauge, in command line arguments
+	it is stricted to string type, this is because, 0th element
+	index is a filename which is a string value, due to which 
+	the entire elements of different data-type are implicitly
+	converted to, string datatype.
+	
+Q: wap a program to find the sum, of all the Arguments supplied. from 
+Command line and Average 
+
+Hint: $argv, and $argc= count($argv)
+		|Array     |value
+$sum = 0;
+$sum = $sum + $argv[i];
+$avg = $sum/($argv-1)
+
+working with Anonymous Scripts:-
+************************************
+
+What is Meaning of Anonymous script ?
+
+1. Let us, consider a scenerio p1.java ---> what is family name of this program ---> java Family (.java extension)
+p2.py ---> Python Family (.py)
+p2.php ---> php family (.php extension)
+By looking at the extension only, we can Identify, Family or Type of Script.
+A file without extension are called as Anonymous File. and Such File
+are recognised as As FILE or <FILENAME Type>
+
+Why this concept is required?
+CodeIgnitor 4 : spark ---> php file
+Laravel :artisan ---> php file
+zwave :zwave ---> php file
+This is used, so that we can hide our, real code without allowing
+Os, to Identify the file type.
+
+
+Wap to make anonymous script in PHP?
+touch awnish
+start notepad awnish
+write the code of php
+
+varaible to variable reference ($$)
+***********************************
+creating the variable from the reference of existing varible it is denoted by 
+$$.
+use of this concept can be found in, codeIgnitor, laravel, Yii, Frameworks,
+where we want to pass the data from controller to view.
+
+Constants in PHP
+******************
+constant are identifiers which are resposible to hold, single value.
+if we try to assign a new values it will generate error.
+
+or
+The Identifier whose value, remains constant through out the execution of the
+is called as Constant.
+
+There are two types of constants
+1. pre-defined : in php there are 1800+ Predefined Constants.
+2. user-defined : user can create there own constants.
+
+pre-defined  : 
+	get_defined_constants() : list of all predefined constants
+
+Important Predefined Constants
+1. PHP_VERSION : returns version PHP
+2. TRUE : return 1
+3. FALSE : return nothing
+4. NULL : return nothing
+5. PHP_EOL :\r\n newline 
+6. PHP_SAPI : return the sapi name (cli|cli-server|apache2handler)
+7. PHP_OS : return os extension
+8. PHP_OS_FAMILY : returns Os name
+9. STDIN : return the resource object of standard Input.
+10. STDOUT : returns the resource object of standard output.
+11. STDERR : returns the resource object of standard error.
+
+Error Levels Constants: 16
+********************************			
+E_ERROR
+E_RECOVERABLE_ERROR
+E_WARNING
+E_PARSE
+E_NOTICE
+E_STRICT
+E_DEPRECATED
+E_CORE_ERROR
+E_CORE_WARNING
+E_COMPILE_ERROR
+E_COMPILE_WARNING
+E_USER_ERROR
+E_USER_WARNING
+E_USER_NOTICE
+E_USER_DEPRECATED
+E_ALL
+
+
+Errors Tree :
+			ERROR
+				|
+			  strict    			Non Strict (Recoverable)
+              (Encounter)              (warning)
+				1. compile				1. notice
+				2. parse				2. warning
+																						
+				<--------------Two Types ------------->
+					1. core 
+					2. user
+					3. deprecated
+					
+How to create the user-defined constants:-
+****************************************
+1. Procederal : 
+2. OOps : in case of interface, and Abstract Class.
+						
+Syntax of procederal user defined constants:-
+*********************************************
+1.  define('<Indentifier-name>',<value>,<case-sensitive-Boolean>);
+These constants have, global scopes, and can be accessed any-where.
+
+for eg:
+define('gravity',10);
+echo gravity;
+
+Properties of Constants:-
+*************************
+1. By default the declaration of constants are atomic,(declaration once) and   case-sensitive.
+2. The scope of, constants are global.
+3. the constants cannot be re-declared.
+4. if we want to make in-case-sensitive Constants we need to set 3rd argument in define 
+   as :true
+5. the in-case-sensitive, constants were deprecated in version 7.x, But this feature
+	is already supported. and in 8.x these features again supported.
+	
+Note : during this concept, we have two Error Raised, 
+1: E_DEPRECATED and 2: E_USER_DEPRECATED  
+
+E_DEPRECATED : reserved pre-defined standards of PHP deprecated error.
+E_USER_DEPRECATED : reserved for user-defined deprecated error.
+
+working with strings literals in PHP
+**************************************
+A varaible in php can hold any type of strings value, but in case of 
+output string, there is vast difference B/w '' and "" and its combinations.
+
+These Combination are Invalid:-
+1. '' inside '' : invalid
+2. "" inside "" : invalid
+
+These Combination are possible:-
+'' inside "" valid
+"" inside '' valid
+'' inside `` valid
+"" inside `` valid
+
+Note :: `` tick can be inside
+	'' or "" Qoutes only.
+	
+Types of Output Strings:-
+
+1. Raw String (single Qoutes): any string wrapped inside '' will be Raw string
+	 in this case, escape character sequence like, \n,\t,\f,\v,
+	 \r,\a, \b and varaibles are not processed.
+	 
+2. Processed String (Double Qoutes) : in case of processed, string every character 
+within "" will be processed.
+
+any string wrapped inside "" Qoutes are called as processed string.
+and they will process, each and every special character like escape sequences  \n,\t,\f,\v, \r,\a,\b and variables will also be processed.
+	
+3. HereDoc String : its works, under, Block Level 
+	syntax:
+	
+echo <<<BLOCK
+	This a Here Doc String, $a \n
+	"This is again New Line of string "$a" "
+BLOCK;
+
+or
+
+echo <<<"BLOCKNAME"
+	This a Here Doc String, $a \n
+	"This is again New Line of string "$a" "
+BLOCKNAME;
+
+heredoc, is capable of,  processing each and every possible combinations.
+
+1. escape characters sequence
+2. varible process
+3. multiple lines
+4. extra spaces 
+5. invalid combination '' inside '' and "" inside "" and `` inside ``
+6. Behaviour = processed string 
+hence, heredoc is also called Blocklevel Processed String or 
+Block level Double Qoutes String.
+7. The best use of heredoc is, to generate dynamic forms
+
+4. newDoc String : its works, under, Block Level 
+	syntax:
+	
+echo <<<'BLOCK'
+	This a new Doc String, $a \n
+	"This is again New Line of string "$a" "
+BLOCK;
+newdoc, is not capable of,  processing each and every possible combinations,hence
+generate the raw output.
+1. escape characters sequence not supported
+2. varible process not supported
+3. multiple lines support
+4. extra spaces support
+5. invalid combination '' inside '' and "" inside "" and `` inside `` support
+6. Behaviour = raw string 
+hence, newdoc is also called Blocklevel raw String or 
+Block level single Qoutes String.
+7. The best used of newdoc is, to generate static forms
+Types of Data Types :-
+1. scalar Data types (Fundamental DataTypes)
+	1. int
+	2. float,double
+	3. string
+	4. boolean
+	
+2. complex(compound) Data Types 
+	1.Array
+	2.Object
+	3.callable** (when OOps)
+	4.Iterable** (When OOps)
+	
+3. Special Data Types 
+	1. Resource  eg: mysqli Object, $fp Resource Object.
+	2. Null
+	
+All these are collectively called, 10 Primitive DataTypes.
+
+Types of PHP Tags :-
+1. Universal Tag or Simple PHP Tags <?php ?> enable 7.x
+2. ShortOpen Tag : <? ?> enable 7.x
+3. Asp Style Tag : <% %> disable 5.x  Deprecated in Version 7.x
+4. Script Style Tags : <script langauge="PHP"></script> disable 5.x Deprecated in Version 7.x
+
+php.ini holds are the settings of php intepreter.
+
+Types of PHP Scripts :-
+1. CORE PHP file.  
+	The entire code is of php, it should not contain any external langauge 
+	code.
+	Even you donot, close the closing of php tag, it will work fine
+	opening of php mendatory but closing of php tag is not mendatory.
+	
+	These core php files includes, libraries, functions, packages or classes 
+	which are written in plain php code only.
+	
+2. Hybrid PHP file.
+	The Hybrid PHP file is a file which contains mixed code, of, html, js, and other langauge including php file, in this case php closing is mendatory.
+	
+3. Inclusive PHP File : it is also same as, hybrid php file, but when this file included in any, core file it becomes inclusive php file.
+	It is recommended to, make an extension of
+	.inc.php to identify that that these files are inclusive php files.
+	
+wap a program to, restrict any file from Directly Running as main file
+
+what is difference b/w defined() and define()?
+1. defined() returns true or false if Constants is already defined.
+2. define() it defines the undefined constants.
+
+wap in PHP to make dynamic  web form using heredoc?
+wap in PHP to make static web form using newdoc?
+Note :: the Older Universal name of newdoc is since php version 5.x
+		and latest name of newdoc is Nowdoc string.
+		
+
+varaibles scopes:-
+In Any program, there can be only two types of scopes
+1. local scope
+2. global scope
+
+1. A varaible defined outside the block is at global scope
+2. A varaible defined inside a function is at local scope.
+
+
+1. You can access only, local varaible inside function
+2. If we try to access, global scope varaible it will be undefined.
+
+3. The local varaible gets the memory allocation at local scope ie at stack memory
+	while global varaible get the memory allocation at global scope ie at heap
+	memory hence if you want the value of global varible it should be accessed from
+	correct scope.
+	
+4. in order to access the global variable we declare global <variablename1,varaiblename,varaible3,...>; in tha first line of function before
+using the global variable.
+
+eg:
+function display(){
+global $b,$c,$n;
+$z=200;
+
+echo $c; //global 
+echo $b; //global
+echo $n; //global 
+echo $z; //local
+}
+
+5. Since, global variable is at, global scope if try to overwrite the value of global varaible the overall change is seen, in entire program.
+	Highly recommended to use, the varible at local but donot change the value at local.
+
+	6. The core concept with, local and global scope is that, outside the function,
+	the varaible occupies global scope without global keyword.
+	But inside function global scope requires global keyword.
+	
+	Eg:
+	for global scope outside the function
+	***************************************	
+	$a=200; //--->heap
+	echo $a; //200
+	
+	function display(){
+		global $a;
+		echo $a;  //200 ---->heap
+	}
+	
+	for local scope inside the function
+	**************************************
+	echo $a; //---> undefined
+	
+	function display(){
+		global $a; ----> heap
+		$a=100; ----> 100
+		echo $a; --->100
+	}
+	
+	echo $a; //--->heap ---> 100
+	
+	
+	

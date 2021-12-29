@@ -1,0 +1,86 @@
+Getting started with Laragon:-
+1.while opening laragon screen you will called as laragon control panel.
+
+1.menu: All the important 
+setting,logs,error,initialisation,configurations related to, apache,mysql,php will be listed here.
+
+Important files:
+1. .ini :initialisation files
+		it will contain all the important services , assets, resource,permission , utilities required by any program during startup.
+		Example:
+			php.ini
+			laragon.ini
+			mysql.ini
+			etc etc..
+			
+2. .log : log files : it will contain all the run time error and exception occured during execution of the Program
+	it restore the information with alerts status 
+		1.success
+		2.info
+		3.warning
+		4.danger(critical)
+Question: 
+	
+		
+3. .cnf or .conf  : configurations files
+	configurations files , it contain the configurations which are required during execution of the program at runtime execution.
+
+Question:
+In live server displayerroe or disabled being a developer how will you find the , error for development enviroment.
+ANS:
+	error Log
+Note: :
+what is senerio in server enviroment 
+www.facebook.com (master) :live 10 lakhs traffic
+test.facebook.com(testing) | push
+dev.facebook.com(dev-1) |push
+
+
+www : this menu will open and show all the projects you will create any c:/laragon/www
+																					|p1.php
+																					|array
+																					|online examination
+																					|
+																					|....
+			1. server document Root: - it contain the system path c:/laragon/www
+			
+			what is document Root of Wamp?
+				c:/wamp/www
+			what is document Root of Xamp?
+				c:xamp/htdocs
+			2. Explore menu: it is used to,open existing Project in explorer window.
+			3. share : used to share the Resource with your team mates connected to network.
+			4. L\Project Launcher [^] : it will launch every project in url.
+
+3. Quick App:-
+	in php every project is a , app 
+	these app can be classified [community-name] App 
+	For Example:
+		1.wordpress community
+			wordpress app
+		2.laravel community
+			laravel app
+		3.drupal community
+			drupal app
+		4.codeIgnitor 
+			codeIgnitor app or CI app
+			...
+			...
+			etc..
+			
+		using Quick app we can automatically, configure and install Application
+		
+		https://github.com/awnishmmg/Zwavexampp-list-plugin/blob/master/Xampp-Directory-Listing.zip?raw=true
+
+
+
+
+
+
+CDCI-continious development continuous integuration
+
+Jobs:
+durgajobs.com
+stackoverflow.com
+turing.com
+anjel.co
