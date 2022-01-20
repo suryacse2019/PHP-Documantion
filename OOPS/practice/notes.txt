@@ -1,0 +1,68 @@
+constructer:
+------------
+this is autometically call the class property is use __construct
+program:
+-------
+	<?php
+class suraj{
+public $name;
+public function __construct($a){
+	echo $this->name=$a;
+	 function sum(){
+		echo $this->name;
+	}
+}
+}
+$test=new suraj("suraj yadav");
+?>
+
+
+Inheritence:
+-----------
+inheritence is used first class inherit the second class like
+first class extends the second class 
+
+`Program:
+-----------
+<?php
+class a{
+	public function name(){
+		echo "suraj yadav";
+	}
+}
+class b extends a{
+	public function sum(){
+		echo "mahesh";
+	}
+}
+$test=new b();
+$test->sum();
+$test->name();
+
+?>
+
+
+Access modifire:-
+----------------
+In access modifire is used to 3 property name public private 
+and protected
+public->this is used all like object , in method and property
+protected->this is used only property and method.
+private->only used in method.
+
+ 
+ Overiding:-
+ ----------
+ first value overide in second value
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
