@@ -6,11 +6,11 @@ abstract class a{
 	}
 	abstract function show();
 } 
-class b extends a{
-	public function show(){
-		echo $this->name;
-	}
-}
+// class b extends a{
+	// public function show(){
+		// echo $this->name;
+	// }
+// }
 $sp=new b("suraj");
 echo $sp->show();
 ?>

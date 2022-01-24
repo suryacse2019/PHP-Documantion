@@ -9,5 +9,6 @@ var_dump($a>$b);
 //not equal to
 //Not happen or naver happen
 
+
 var_dump($a!=$b);
 var_dump($a<>$b);

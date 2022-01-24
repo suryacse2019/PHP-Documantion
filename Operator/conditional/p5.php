@@ -4,7 +4,7 @@ $n=readline("Enter the number");
 
 is_perfect($n)?("$n is perfect no"):("$n is not perfect");
 
-
+/*
 function is_perfect($n,$i=1,$sum=0){
 if($i==$n){
 return false;
@@ -18,6 +18,11 @@ return true;
 }
 return is_perfect($n,$i+1,$sum);
 }
+}*/
+
+function is_perfect($n,$i+1,$sum){
+	
+	$return 
 }
 
 ?>

@@ -55,6 +55,485 @@ private->only used in method.
  ----------
  first value overide in second value
  
+Interface:
+-----------
+there are many interface inside the function then the class use class name *implements* first interface,
+second interface etc...
+
+example:
+-----
+		<?php
+interface a{
+	public function name($name);
+}
+interface b{
+	public function address($add);
+}
+class d implements a,b{
+	public function name($name){
+		echo $name;
+	}
+	public function address($add)
+	{
+		echo $add;
+	}
+}
+$test=new d();
+$test->name("suraj yadav");
+$test->address("sakhoi");
+
+?>
+
+
+Static:-
+--------
+simple class access modifire function calling use $this but in static modifire calling function use 
+self::function name or direct class name::variavle
+
+Exaple:-
+	<?php 
+//wap in php to show static member in php
+
+class suraj{
+	public static $name="suraj yadav";
+	public static function show(){
+		echo self::$name;
+	}
+}
+//$test=new suraj("sp");
+//$test->show();
+//suraj::$name;
+suraj::show();
+?>
+
+
+Let Static Binding :-
+---------------------
+
+	let static binding calling use static::variable name 
+	
+Program::-
+-------
+		<?php
+//wap in php to show let static binding
+
+class A{
+	public static  $name="suraj";
+	public function show(){
+		echo  static::$name;	
+		echo self::$name;
+	}
+}
+class B extends A{
+		public static $name="yadav";
+}
+$test=new B();
+$test->show();
+?>
+
+ Traits:-
+ ------
+	traits inside the function use in class class name 
+
+Program:-
+--------	
+	<?php
+//wap in php to sshow trait in class
+
+trait A{
+	public function show(){
+		echo "suraj yadav";
+	}
+}
+class B{
+	use A;
+}
+class C{
+	use A;
+}
+$test=new B();
+$test1=new C();
+$test->show();
+$test1->show();
+?>
+
+Namespace:-
+---------
+this namespace use multiple file then create function class and requre the only page 
+
+Program:-
+-------
+Firstpage:-Name index.php
+-------------------------
+
+	<?php
+require "product.php";
+require "number.php";
+
+use sp\sd\sd\dg\hh as cmd;
+$test=new cmd\sum();
+//$test1=new st\sum();
+
+cmd\suraj();
+?>
+
+secondPage:-Name Product.php
+---------------------------
+
+	<?php
+namespace sp\sd\sd\dg\hh;
+class sum{
+	public function __construct(){
+		//echo "This is product page".PHP_EOL;
+		$test=new \st\sum();
+	}
+}
+function suraj(){
+	echo "hii surya";
+}
+?>
+ 
+ 
+third page:-Name number.php
+---------------------------
+
+	<?php
+namespace st;
+class sum{
+	public function __construct(){
+		echo "This is number page".PHP_EOL;
+	}
+}
+
+?>
+
+
+Method Changing:-
+----------------
+	in method changing there are multiple function in one class then calling multiple times but in method changing
+	onl one line.
+	
+Program:-
+--------
+	<?php
+class test{
+	public function show(){
+		echo "this is show function \n";
+		return $this;
+	}
+	public function show1(){
+		echo "this is show1 function \n";
+		return $this;
+	}
+	public function show2(){
+		echo "this is show2 function \n";
+		return $this;
+	}
+	public function show3(){
+		echo "this is show3 function \n";
+		return $this;
+	}
+}
+$Test=new test();
+$Test->show()->show1()->show2()->show3();
+?>
+
+__Destruct:-
+-------------
+__Destruct method is also like __construct but this method is called 
+in last all class member function called then __Destruct method call
+
+Program:-
+-------
+	<?php
+//wap in php to show the __destruct method
+class test{
+	function __construct(){
+		echo "this is construct calling".PHP_EOL;
+	}
+	function __destruct(){
+		echo "this is destruct function calling";
+	}
+	function show(){
+		echo "this show function calling".PHP_EOL;
+	}
+	
+}
+$name=new test();
+$name->show();
+?>
+
+__autoload Method:-
+------------------
+	autoload method is in use of multiple page in one page like require and include
+	method but in autoload method use __autoload 
+
+program:-
+---------
+first Page:
+---------
+<?php
+//wap in php to show class of autoload
+
+class first{
+	function __construct(){
+		echo "this is first class";
+	}
+}
+
+?>
+
+second page:-
+------------
+ <?php
+//wap in php to show class of autoload
+
+class second{
+	function __construct(){
+		echo "this is second class";
+	}
+}
+
+?>
+
+Main autoload page :-
+----------------------
+<?php
+//wap in php to show autoload method in php
+//require "autoload-classess/first.php";
+//require "autoload-classess/second.php";
+
+function __autoload($names){
+	require "autoload-classess/" .$names. ".php";
+}
+
+$test=new first();
+echo PHP_EOL;
+$test1=new second();
+?>
+
+
+Magic Method:
+-------------
+there are multiple magic method in php
+1.__Destruct
+2.__construct
+3.__autoload
+4.__get
+5.__set
+6.__isset
+7.__call
+8.__class__
+9.__callstatic
+10.__unset
+11.__toString
+
+
+__get Method:-
+--------------
+when i use the private property so call the object but the error 
+not access private property
+the i use __get() to messege error 
+
+Program:-
+-------
+	<?php
+//wap inphp to show get method in php
+class show{
+	private $name="suraj yadav";
+public function __get($property){
+	echo "not access to private property($property)";
+}
+}
+$test=new show();
+$test->name;
+?>
+
+__set() Method:-
+----------------
+set method is also the get method but in set method set the value
+useing get 
+
+example:-
+------
+<?php
+//wap in php to show set-method in php
+
+class Test{
+	private	$name;
+	public function show(){
+		echo $this->name;
+	}
+	public function __get($property){
+		echo "private property does not exit";
+	}
+	public function __set($property,$value){
+		if(property_exists($this,$property)){
+			$this->$property=$value;
+		}
+		else
+		{
+			echo "property does not exit";
+		}
+	}
+	
+}
+$test=new Test();
+$test->name="suraj yadav";
+$test->show();
+?>
+
+
+Call Method:-
+------------
+call method bhi __get,__set method ki tarah hi hota hai jab hum private 
+property ka object banke call karate ho to error ata usi ko hum 
+__call method se koi ak messege de sakate hai
+
+__call($method,$argv) esme 2 value lena avsyak hai.
+
+Program:-
+---------
+<?php 
+//wap in php to show call method 
+class show{
+	private $first_name;
+	private $last_name;
+	private function test($n1,$n2){
+		$this->first_name=$n1;
+		$this->last_name=$n2;
+	}
+	public function __call($method,$argv){
+		echo "pribvate property can not access";
+	}
+}
+$sp=new show();
+$sp->test("suraj","yadav");
+?>
+
+__call static Method:-
+----------------------
+call static method same as call method
+
+Program:-
+<?php
+//wap in php to show call static method 
+class test{
+	private static function sp(){
+		echo "hii hello surya";
+	}
+	public static function __callstatic($method,$argv)
+	{
+		if(method_exists(__class__,$method)){
+			call_user_func_array([__class__,$method],$argv);
+		}
+		else{
+			echo "not values";
+		}
+	}
+}
+test::sp();
+?>
+
+__isset() method:-
+------------------
+isset method return true and false if the value is set then return 1 and the value is not set
+then return the value is 0
+
+program:-
+-----------
+<?php
+//wap in php to show isset 
+class test{
+	public $name="suraj yadav";
+private $address="sakhoi";
+public function show($n,$a){
+	$this->name=$n;
+	$this->address=$a;
+}
+}
+$test=new test();
+echo isset($test->name);
+?>
+
+
+__unset method:-
+-----------------
+unset method is used to unset the value property.
+
+PRogram:-
+---------
+<?php
+//wap in php to show unset in php
+class test{
+	public $name="suraj yadav";
+	private $add="sakhoi";
+	public function __unset($property){
+		unset($this->$property);
+	}
+	
+}
+$test=new test();
+//unset($test->name);
+//echo $test->name;
+//unset($test->add);
+print_r($test);
+?>
+
+__toString() Method:-
+---------------------
+kisi bhi messege ko class object me direct print kara sakate hai
+
+Program:-
+-------
+<?php
+//wap in php to show to string in php
+class test{
+	public function __toString(){
+		return "suraj yadav";
+	}
+} 
+$test=new test();
+echo $test;
+?>
+
+__sleep() Method:-
+-------------------
+esme sabhi value ko ak array ke roop me return karate hai but jab kush hi array ko return karana
+ho to hum __sleep method  ka use karate hai .
+
+Program:-
+-----------
+<?php
+//wap in php to show sleep method in php
+class test{
+	public $name="suraj yadav";
+	private $firstname;
+	private $lastname;
+	public function setname($fname,$lname){
+		$this->firstname=$fname;
+		$this->lastname=$lname;
+	}
+	public function __sleep(){
+		return array('firstname','lastname');
+	}
+}
+$test=new test();
+$test->setname("mahesh","mishra");
+$srl=serialize($test);
+echo $srl;
+?>
+	
+	
+__wakeup() Method:-
+-------------------
+
+	
+ 
+ 
+ 
+ 
+ 
  
  
  
