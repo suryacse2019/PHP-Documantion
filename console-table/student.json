@@ -1,0 +1,28 @@
+{
+"collection":"student",
+"author":"suraj yadav",
+"date":"27-jan-2022",
+"time":"10:03:00 am",
+"data":[
+	{
+		"roll":1001,
+		"name":"suraj",
+		"marks":50
+	},
+	{
+		"roll":1002,
+		"name":"mahesh",
+		"marks":60
+	},
+	{
+		"roll":1003,
+		"name":"jay",
+		"marks":80
+	},
+	{
+		"roll":1004,
+		"name":"monu",
+		"marks":70
+	}
+ ]
+}
